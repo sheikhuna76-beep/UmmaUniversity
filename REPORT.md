@@ -36,8 +36,6 @@ Developed natively in Kotlin using Jetpack Compose and Room Database, the applic
 
 The application implements the standard Android MVVM (Model-View-ViewModel) architecture with a clean repository layer.
 
-![System Architecture Diagram](screenshots/system_architecture_diagram.png)
-
 ```
 +-----------------------------------------------------------------------------------+
 |                            UI LAYER (Jetpack Compose)                             |
@@ -77,8 +75,6 @@ The application implements the standard Android MVVM (Model-View-ViewModel) arch
 ## 3. ROLE-BASED ACCESS CONTROL & PERMISSIONS
 
 The application enforces strict role-based authorization branching directly from authentication:
-
-![Role-Based Access Control Diagram](screenshots/role_based_access_diagram.png)
 
 ```
                                 +-----------------------+
@@ -121,8 +117,6 @@ The application enforces strict role-based authorization branching directly from
 ## 4. DATABASE SCHEMA & ER DIAGRAM
 
 The application utilizes **Room Database** (`"umma_university_db"`) with 22 relational entities.
-
-![Database ERD Diagram](screenshots/database_erd_diagram.png)
 
 ```
  +----------------------------+                +----------------------------+
@@ -234,58 +228,39 @@ The application utilizes **Room Database** (`"umma_university_db"`) with 22 rela
 
 ---
 
-## 8. COMPREHENSIVE USER MANUAL & SCREENSHOT WALKTHROUGH
+## 8. COMPREHENSIVE USER MANUAL & ACTUAL SCREENSHOTS
 
-### 8.1 Authentication Portal
+### 8.1 Student Portal Screenshots
 
-#### Step 1: Splash Screen
-Launch the application to view the official UMMA University splash screen featuring the official crest logo, title, and motto.
+#### Student Portal Dashboard
+Displays student welcome greeting, registration number, programme, semester, current calculated GPA (3.75), fee balance (KES 20,000), attendance percentage (93.3%), next scheduled class, next examination date, and module access grid.
 
-![Splash Screen](screenshots/splash_screen.png)
+![Student Dashboard Screen](screenshots/student_dashboard.jpeg)
 
-#### Step 2: Login Screen
-Select a 1-tap **Quick Fill Chip** (*Student*, *Lecturer*, *Admin*) or enter official credentials and click **LOGIN**.
+#### Academic Results & Performance
+Displays course-by-course breakdown of CAT marks (out of 30), Exam marks (out of 70), total percentage, assigned letter grades (A, B, C, D, F), grade points, and semester GPA statement.
 
-![Login Screen](screenshots/login.png)
+![Examination Results Screen](screenshots/results_screen.jpeg)
 
----
+#### Fees, Statements & M-PESA Payment
+Displays total billed fees, total amount paid, outstanding balance, itemized fee structure breakdown, digital receipt transaction history, and interactive **MAKE PAYMENT** button.
 
-### 8.2 Student Portal Walkthrough
-
-#### Step 1: Student Dashboard
-View welcome message, registration number, programme, semester, GPA (3.75), fee balance (KES 20,000), next class schedule, next exam date, and module tiles.
-
-![Student Dashboard Screen](screenshots/student_dashboard.png)
-
-#### Step 2: Results & Academic Transcript
-Access examination marks breakdown (CAT 30% + Exam 70%), total percentage, letter grade, grade points, and official academic transcript statement.
-
-![Examination Results Screen](screenshots/results.png)
-![Academic Transcript Screen](screenshots/transcript.png)
-
-#### Step 3: Fee Payment & Receipt History
-View billed fee structure, payment history receipts, click **MAKE PAYMENT**, select M-PESA, enter amount, and click **PROCESS PAYMENT**.
-
-![Finance & Fee Payment Screen](screenshots/finance.png)
+![Finance & Fee Payment Screen](screenshots/finance_screen.jpeg)
 
 ---
 
-### 8.3 Lecturer Portal Walkthrough
+### 8.2 Lecturer Portal Screenshots
 
-#### Step 1: Attendance Logging
-Select assigned course and date, toggle student presence (*Present / Absent*), and click **SAVE ATTENDANCE BATCH**.
+#### Lecturer Dashboard & Attendance Recording
+Allows assigned faculty lecturers to view teaching units, student enrollment counts, select class dates, toggle student presence (*Present / Absent*), and save attendance batches directly to the database.
 
-![Lecturer Attendance Screen](screenshots/lecturer_attendance.png)
-
-#### Step 2: Marks & Grade Entry
-Select student and unit, enter CAT marks (0-30) and Exam marks (0-70), view computed total percentage, grade, and grade point, and click **SAVE & PUBLISH MARKS**.
-
-![Lecturer Marks Entry Screen](screenshots/lecturer_marks.png)
+![Lecturer Dashboard Screen](screenshots/lecturer_dashboard.jpeg)
 
 ---
 
-### 8.4 Administrator Portal Walkthrough
+### 8.3 Administrator Portal Screenshots
 
-View university overview statistics (Total Students, Lecturers, Courses, Departments, Fee Revenue), manage student and lecturer user directory, add courses/departments, and resolve student help desk support tickets.
+#### Administrator Control Center & System Operations
+Provides university-wide statistics (Total Enrolled Students, Lecturer Staff, Active Courses, Departments, Total Fee Revenue), user management for student/lecturer accounts, course/department administration, and student help desk ticket resolution.
 
-![Administrator Dashboard Screen](screenshots/admin_dashboard.png)
+![Administrator Dashboard Screen](screenshots/admin_dashboard.jpeg)
