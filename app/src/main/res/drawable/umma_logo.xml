@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Green Sunburst Rays -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M60,10 L62,30 L60,32 L58,30 Z
+                          M53,12 L58,30 L55,32 L50,14 Z
+                          M46,16 L54,31 L51,33 L43,19 Z
+                          M40,22 L51,33 L48,35 L36,26 Z
+                          M35,29 L48,36 L45,37 L31,33 Z
+                          M31,37 L47,39 L45,40 L28,40 Z
+                          M67,12 L70,14 L65,32 L62,30 Z
+                          M74,16 L77,19 L69,33 L66,31 Z
+                          M80,22 L84,26 L72,35 L69,33 Z
+                          M85,29 L89,33 L75,37 L72,36 Z
+                          M89,37 L92,40 L75,40 L73,39 Z" />
+
+    <!-- Outer Navy Book Shield -->
+    <path
+        android:fillColor="#0D274A"
+        android:pathData="M42,44 L60,36 L78,44 L78,66 L60,76 L42,66 Z" />
+
+    <!-- Inner Blue Book -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M46,47 L60,40 L74,47 L74,64 L60,73 L46,64 Z" />
+
+    <!-- Pen Nib Center Hole & Line -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M59,42 L61,42 L61,65 L60,69 L59,65 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,55 A2.5,2.5 0 1,1 60,50 A2.5,2.5 0 1,1 60,55 Z" />
+
+    <!-- Dark Navy Outer Frame -->
+    <path
+        android:fillColor="#091A30"
+        android:pathData="M39,46 L43,44 L43,65 L60,74 L77,65 L77,44 L81,46 L81,68 L60,79 L39,68 Z" />
+
+</vector>

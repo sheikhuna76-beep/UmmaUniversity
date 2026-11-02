@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- University Building Roof & Pillars -->
+    <path
+        android:fillColor="#0F5A32"
+        android:pathData="M10,40 L50,15 L90,40 L80,40 L80,80 L20,80 L20,40 Z" />
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M30,45 L36,45 L36,75 L30,75 Z
+                          M47,45 L53,45 L53,75 L47,75 Z
+                          M64,45 L70,45 L70,75 L64,75 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,22 A6,6 0 1,1 50,34 A6,6 0 1,1 50,22 Z" />
+</vector>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="260dp"
+    android:viewportWidth="200"
+    android:viewportHeight="260">
+
+    <!-- Top Green Sunburst Rays -->
+    <!-- Center Ray -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M100,20 L103,60 L100,65 L97,60 Z" />
+    <!-- Left Rays -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M88,24 L96,61 L92,65 L84,28 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M76,32 L90,63 L85,66 L71,38 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M65,44 L85,67 L79,69 L59,51 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M56,58 L80,72 L75,74 L50,65 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M50,75 L77,78 L73,80 L45,80 Z" />
+
+    <!-- Right Rays -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M112,24 L116,28 L108,65 L104,61 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M124,32 L129,38 L115,66 L110,63 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M135,44 L141,51 L121,69 L115,67 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M144,58 L150,65 L125,74 L120,72 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M150,75 L155,80 L127,80 L123,78 Z" />
+
+    <!-- Blue Open Book Shield Emblem -->
+    <!-- Outer Navy Border -->
+    <path
+        android:fillColor="#0D274A"
+        android:pathData="M70,88 L100,72 L130,88 L130,132 L100,152 L70,132 Z" />
+
+    <!-- Inner Light Blue Book Leaves -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M77,93 L100,80 L123,93 L123,128 L100,145 L77,128 Z" />
+
+    <!-- Center Fountain Pen Nib White Line & Dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M98,84 L102,84 L102,130 L100,138 L98,130 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M100,110 A4,4 0 1,1 100,102 A4,4 0 1,1 100,110 Z" />
+
+    <!-- Navy Blue Base Shield Frame -->
+    <path
+        android:fillColor="#091A30"
+        android:pathData="M65,92 L72,88 L72,130 L100,148 L128,130 L128,88 L135,92 L135,135 L100,158 L65,135 Z" />
+
+</vector>
