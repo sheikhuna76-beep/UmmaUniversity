@@ -25,70 +25,83 @@ img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 
 
 The database schema utilizes an embedded SQLite database engine managed by Android Jetpack Room with 22 relational entities.
 
-![Database ERD Diagram](screenshots/database_erd_diagram.png)
+<svg viewBox="0 0 900 660" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:900px; display:block; margin:20px auto; background:#ffffff;">
+  <rect x="20" y="20" width="250" height="180" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="20" y="20" width="250" height="30" fill="#2E7D32"/>
+  <text x="145" y="40" font-family="'Times New Roman', Times, serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">USERS</text>
+  <text x="30" y="68" font-family="monospace" font-size="11" fill="#C62828">int     id (PK)</text>
+  <text x="30" y="88" font-family="monospace" font-size="11" fill="#333">string  fullName</text>
+  <text x="30" y="108" font-family="monospace" font-size="11" fill="#333">string  email</text>
+  <text x="30" y="128" font-family="monospace" font-size="11" fill="#333">string  passwordHash</text>
+  <text x="30" y="148" font-family="monospace" font-size="11" fill="#333">string  role</text>
+  <text x="30" y="168" font-family="monospace" font-size="11" fill="#333">string  phone, regOrStaffNum</text>
 
-```
- +----------------------------+                +----------------------------+
- |           USERS            |                |          COURSES           |
- +----------------------------+                +----------------------------+
- | int    id             (PK) |                | int    id             (PK) |
- | string fullName            |                | string code                |
- | string email               |                | string title               |
- | string passwordHash        |                | int    creditHours         |
- | string role                |                | string semester            |
- | string phone               |                | string lecturerName        |
- | string regOrStaffNum       |                | string department          |
- +----------------------------+                +----------------------------+
-     |        |         |                         |        |          |
- (1:1)|   (1:N)|     (1:N)|                     (1:N)|    (1:N)|      (1:N)|
-     v        v         v                         v        v          v
- +----------------------------+                +----------------------------+
- |      STUDENT_PROFILES      |                |   COURSE_REGISTRATIONS     |
- +----------------------------+                +----------------------------+
- | int    userId      (PK,FK) |                | int    id             (PK) |
- | string regNumber           |                | int    studentId      (FK) |
- | string programme           |                | int    courseId       (FK) |
- | string department          |                | string courseCode          |
- | float  gpa                 |                | string courseTitle         |
- | float  cgpa                |                | string status              |
- | float  feeBalance          |                +----------------------------+
- +----------------------------+
-                                               +----------------------------+
- +----------------------------+                |        ASSIGNMENTS         |
- |          RESULTS           |                +----------------------------+
- +----------------------------+                | int    id             (PK) |
- | int    id             (PK) |                | int    courseId       (FK) |
- | int    stId           (FK) |                | string title               |
- | int    cId            (FK) |                | string description         |
- | float  catMarks            |                | date   dueDate             |
- | float  examMarks           |                | float  totalMarks          |
- | float  totalPercent        |                +----------------------------+
- | string grade               |                             |
- | float  gp                  |                             | (1:N)
- +----------------------------+                             v
-                                               +----------------------------+
- +----------------------------+                |   ASSIGNMENT_SUBMISSIONS   |
- |          PAYMENTS          |                +----------------------------+
- +----------------------------+                | int    id             (PK) |
- | int    id             (PK) |                | int    assignmentId   (FK) |
- | int    stId           (FK) |                | int    studentId      (FK) |
- | string txId                |                | date   submissionDate      |
- | float  amount              |                | string content             |
- | date   date                |                | float  marksObtained       |
- | string receiptNo           |                | string status              |
- +----------------------------+                +----------------------------+
+  <rect x="630" y="20" width="250" height="180" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="630" y="20" width="250" height="30" fill="#2E7D32"/>
+  <text x="755" y="40" font-family="'Times New Roman', Times, serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">COURSES</text>
+  <text x="640" y="68" font-family="monospace" font-size="11" fill="#C62828">int     id (PK)</text>
+  <text x="640" y="88" font-family="monospace" font-size="11" fill="#333">string  code</text>
+  <text x="640" y="108" font-family="monospace" font-size="11" fill="#333">string  title</text>
+  <text x="640" y="128" font-family="monospace" font-size="11" fill="#333">int     creditHours</text>
+  <text x="640" y="148" font-family="monospace" font-size="11" fill="#333">string  semester</text>
+  <text x="640" y="168" font-family="monospace" font-size="11" fill="#333">string  lecturerName, dept</text>
 
- +----------------------------+
- |     HELP_DESK_REQUESTS     |
- +----------------------------+
- | int    id             (PK) |
- | int    studentId      (FK) |
- | string requestId           |
- | string category            |
- | string subject             |
- | string status              |
- +----------------------------+
-```
+  <rect x="20" y="230" width="200" height="170" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="20" y="230" width="200" height="30" fill="#2E7D32"/>
+  <text x="120" y="250" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">STUDENT_PROFILES</text>
+  <text x="30" y="278" font-family="monospace" font-size="11" fill="#1565C0">int    userId (PK,FK)</text>
+  <text x="30" y="298" font-family="monospace" font-size="11" fill="#333">string regNumber</text>
+  <text x="30" y="318" font-family="monospace" font-size="11" fill="#333">string programme</text>
+  <text x="30" y="338" font-family="monospace" font-size="11" fill="#333">float  gpa, cgpa</text>
+  <text x="30" y="358" font-family="monospace" font-size="11" fill="#333">float  feeBalance</text>
+
+  <rect x="240" y="230" width="200" height="190" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="240" y="230" width="200" height="30" fill="#2E7D32"/>
+  <text x="340" y="250" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">RESULTS</text>
+  <text x="250" y="278" font-family="monospace" font-size="11" fill="#C62828">int   id (PK)</text>
+  <text x="250" y="298" font-family="monospace" font-size="11" fill="#1565C0">int   stId, cId (FK)</text>
+  <text x="250" y="318" font-family="monospace" font-size="11" fill="#333">float catMarks</text>
+  <text x="250" y="338" font-family="monospace" font-size="11" fill="#333">float examMarks</text>
+  <text x="250" y="358" font-family="monospace" font-size="11" fill="#333">float totalPercent</text>
+  <text x="250" y="378" font-family="monospace" font-size="11" fill="#333">string grade, float gp</text>
+
+  <rect x="460" y="230" width="200" height="170" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="460" y="230" width="200" height="30" fill="#2E7D32"/>
+  <text x="560" y="250" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PAYMENTS</text>
+  <text x="470" y="278" font-family="monospace" font-size="11" fill="#C62828">int    id (PK)</text>
+  <text x="470" y="298" font-family="monospace" font-size="11" fill="#1565C0">int    stId (FK)</text>
+  <text x="470" y="318" font-family="monospace" font-size="11" fill="#333">string txId</text>
+  <text x="470" y="338" font-family="monospace" font-size="11" fill="#333">float  amount, date</text>
+  <text x="470" y="358" font-family="monospace" font-size="11" fill="#333">string receiptNo</text>
+
+  <rect x="680" y="230" width="200" height="170" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="680" y="230" width="200" height="30" fill="#2E7D32"/>
+  <text x="780" y="250" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">HELP_DESK_REQUESTS</text>
+  <text x="690" y="278" font-family="monospace" font-size="11" fill="#C62828">int    id (PK)</text>
+  <text x="690" y="298" font-family="monospace" font-size="11" fill="#1565C0">int    studentId (FK)</text>
+  <text x="690" y="318" font-family="monospace" font-size="11" fill="#333">string requestId</text>
+  <text x="690" y="338" font-family="monospace" font-size="11" fill="#333">string category, subject</text>
+  <text x="690" y="358" font-family="monospace" font-size="11" fill="#333">string status, response</text>
+
+  <rect x="240" y="450" width="240" height="170" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="240" y="450" width="240" height="30" fill="#2E7D32"/>
+  <text x="360" y="470" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">COURSE_REGISTRATIONS</text>
+  <text x="250" y="498" font-family="monospace" font-size="11" fill="#C62828">int    id (PK)</text>
+  <text x="250" y="518" font-family="monospace" font-size="11" fill="#1565C0">int    studentId, courseId (FK)</text>
+  <text x="250" y="538" font-family="monospace" font-size="11" fill="#333">string courseCode, courseTitle</text>
+  <text x="250" y="558" font-family="monospace" font-size="11" fill="#333">string status</text>
+
+  <rect x="520" y="450" width="220" height="170" rx="6" fill="#F1F8E9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="520" y="450" width="220" height="30" fill="#2E7D32"/>
+  <text x="630" y="470" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ASSIGNMENTS</text>
+  <text x="530" y="498" font-family="monospace" font-size="11" fill="#C62828">int    id (PK)</text>
+  <text x="530" y="518" font-family="monospace" font-size="11" fill="#1565C0">int    courseId (FK)</text>
+  <text x="530" y="538" font-family="monospace" font-size="11" fill="#333">string title, description</text>
+  <text x="530" y="558" font-family="monospace" font-size="11" fill="#333">date   dueDate, float totalMarks</text>
+
+  <path d="M 145 200 L 120 230 M 145 200 L 340 230 M 145 200 L 560 230 M 145 200 L 780 230" stroke="#888888" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <path d="M 755 200 L 340 230 M 755 200 L 360 450 M 755 200 L 630 450" stroke="#888888" stroke-width="1.5" stroke-dasharray="4,4"/>
+</svg>
 
 ---
 
