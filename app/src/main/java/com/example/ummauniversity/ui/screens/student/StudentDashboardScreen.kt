@@ -102,7 +102,7 @@ fun StudentDashboardScreen(
                                 color = UmmaGoldAccent
                             )
                             Text(
-                                text = currentUser?.fullName ?: "Ahmed Hassan",
+                                text = currentUser?.fullName ?: "Asiyah Abdullahi",
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.White

@@ -167,7 +167,7 @@ fun ELearningScreen(
                             studentViewModel.submitAssignment(
                                 assignment = assign,
                                 content = submissionContent,
-                                studentName = currentUser?.fullName ?: "Ahmed Hassan",
+                                studentName = currentUser?.fullName ?: "Asiyah Abdullahi",
                                 regNo = currentUser?.regOrStaffNumber ?: "UMMA/CS/001/2026"
                             )
                             showSubmitDialog = false

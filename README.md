@@ -15,7 +15,7 @@ Please refer to **[`REPORT.md`](file:///C:/Users/Admin/AndroidStudioProjects/Umm
 
 | User Role | Email | Password | Details |
 | :--- | :--- | :--- | :--- |
-| **Student** | `student@umma.ac.ke` | `student123` | Ahmed Hassan (UMMA/CS/001/2026, Computer Science) |
+| **Student** | `student@umma.ac.ke` | `student123` | Asiyah Abdullahi (UMMA/CS/001/2026, Computer Science) |
 | **Lecturer** | `lecturer@umma.ac.ke` | `lecturer123` | Dr. Omar Farooq (LEC/CS/042, Computer Science) |
 | **Administrator** | `admin@umma.ac.ke` | `admin123` | Admin Fatuma Hussein (ADM/001, Academic Registry) |
 

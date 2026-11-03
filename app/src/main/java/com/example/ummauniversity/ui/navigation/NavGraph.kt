@@ -129,6 +129,7 @@ fun AppNavGraph(
 
         composable(ScreenRoute.StudentTranscript.route) {
             TranscriptScreen(
+                currentUser = currentUser,
                 studentViewModel = studentViewModel,
                 onNavigateToRoute = { route -> navController.navigate(route) }
             )

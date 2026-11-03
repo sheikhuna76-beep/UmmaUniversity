@@ -155,7 +155,7 @@ fun HelpDeskScreen(
                     onClick = {
                         if (subjectInput.isNotBlank() && descriptionInput.isNotBlank()) {
                             studentViewModel.submitHelpDeskRequest(
-                                studentName = currentUser?.fullName ?: "Ahmed Hassan",
+                                studentName = currentUser?.fullName ?: "Asiyah Abdullahi",
                                 category = selectedCategory,
                                 subject = subjectInput,
                                 description = descriptionInput

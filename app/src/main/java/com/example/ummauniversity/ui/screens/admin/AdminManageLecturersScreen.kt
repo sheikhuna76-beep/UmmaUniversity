@@ -21,6 +21,7 @@ import com.example.ummauniversity.ui.components.EmptyStateView
 import com.example.ummauniversity.ui.components.UmmaTopBar
 import com.example.ummauniversity.ui.theme.UmmaGreenPrimary
 import com.example.ummauniversity.viewmodel.AdminViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun AdminManageLecturersScreen(
@@ -32,8 +33,12 @@ fun AdminManageLecturersScreen(
     var showAddDialog by remember { mutableStateOf(false) }
     var nameInput by remember { mutableStateOf("") }
     var emailInput by remember { mutableStateOf("") }
+    var passwordInput by remember { mutableStateOf("lecturer123") }
     var staffIdInput by remember { mutableStateOf("LEC/CS/") }
     var deptInput by remember { mutableStateOf("Computer Science") }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -43,6 +48,7 @@ fun AdminManageLecturersScreen(
                 onBackClick = onNavigateBack
             )
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { showAddDialog = true },
@@ -108,7 +114,7 @@ fun AdminManageLecturersScreen(
     if (showAddDialog) {
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
-            title = { Text("Add Lecturer Staff") },
+            title = { Text("Register Lecturer Staff") },
             text = {
                 Column {
                     OutlinedTextField(
@@ -123,6 +129,14 @@ fun AdminManageLecturersScreen(
                         value = emailInput,
                         onValueChange = { emailInput = it },
                         label = { Text("Official Email") },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = passwordInput,
+                        onValueChange = { passwordInput = it },
+                        label = { Text("Initial Password") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -152,11 +166,17 @@ fun AdminManageLecturersScreen(
                                 fullName = nameInput,
                                 email = emailInput,
                                 staffId = staffIdInput,
-                                dept = deptInput
+                                dept = deptInput,
+                                password = passwordInput.ifBlank { "lecturer123" }
                             )
+                            val addedName = nameInput
                             showAddDialog = false
                             nameInput = ""
                             emailInput = ""
+                            passwordInput = "lecturer123"
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar("Registered lecturer staff account: $addedName")
+                            }
                         }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = UmmaGreenPrimary)

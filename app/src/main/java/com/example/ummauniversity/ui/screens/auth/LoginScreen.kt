@@ -255,12 +255,12 @@ fun LoginScreen(
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "Don't have an account?",
+                                text = "Are you an Administrator?",
                                 style = MaterialTheme.typography.bodyMedium
                             )
                             TextButton(onClick = onNavigateToRegister) {
                                 Text(
-                                    text = "Register",
+                                    text = "Register Admin",
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary
                                 )

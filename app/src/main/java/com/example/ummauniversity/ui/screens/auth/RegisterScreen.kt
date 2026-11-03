@@ -6,8 +6,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.Badge
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
@@ -22,6 +24,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ummauniversity.ui.components.UmmaTopBar
+import com.example.ummauniversity.ui.theme.UmmaGoldAccent
+import com.example.ummauniversity.ui.theme.UmmaGreenDark
 import com.example.ummauniversity.ui.theme.UmmaGreenPrimary
 import com.example.ummauniversity.viewmodel.AuthState
 import com.example.ummauniversity.viewmodel.AuthViewModel
@@ -35,11 +39,9 @@ fun RegisterScreen(
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var selectedRole by remember { mutableStateOf("STUDENT") }
+    var staffId by remember { mutableStateOf("ADM/") }
     var phone by remember { mutableStateOf("") }
-    var regOrStaffNumber by remember { mutableStateOf("") }
-    var department by remember { mutableStateOf("Computer Science") }
-    var programme by remember { mutableStateOf("Bachelor of Computer Science") }
+    var department by remember { mutableStateOf("Administration") }
 
     val authState by authViewModel.authState.collectAsState()
 
@@ -54,8 +56,8 @@ fun RegisterScreen(
     Scaffold(
         topBar = {
             UmmaTopBar(
-                title = "Account Registration",
-                subtitle = "UMMA University Portal",
+                title = "Admin Registration",
+                subtitle = "UMMA University Management Console",
                 onBackClick = onBackToLogin
             )
         }
@@ -70,15 +72,43 @@ fun RegisterScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Create Portal Account",
+                text = "Create Administrator Account",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold
             )
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Fill in your official university credentials",
+                text = "System Admin Access Provisioning",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.outline
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Notice Banner
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Row(
+                    modifier = Modifier.padding(14.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = null,
+                        tint = UmmaGreenPrimary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = "Notice: Self-registration is restricted to Administrator accounts only. Student and Lecturer accounts are created and managed by Administrators in the Control Center.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -98,33 +128,30 @@ fun RegisterScreen(
                 Spacer(modifier = Modifier.height(12.dp))
             }
 
-            // Role Segment Selector
-            Text(
-                text = "Select User Role:",
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(6.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+            // Fixed Role Badge
+            Surface(
+                color = UmmaGreenDark,
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier.padding(vertical = 4.dp)
             ) {
-                FilterChip(
-                    selected = selectedRole == "STUDENT",
-                    onClick = { selectedRole = "STUDENT" },
-                    label = { Text("Student") }
-                )
-                FilterChip(
-                    selected = selectedRole == "LECTURER",
-                    onClick = { selectedRole = "LECTURER" },
-                    label = { Text("Lecturer") }
-                )
-                FilterChip(
-                    selected = selectedRole == "ADMIN",
-                    onClick = { selectedRole = "ADMIN" },
-                    label = { Text("Admin") }
-                )
+                Row(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AdminPanelSettings,
+                        contentDescription = null,
+                        tint = UmmaGoldAccent,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Role: ADMINISTRATOR",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -143,7 +170,7 @@ fun RegisterScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("University Email") },
+                label = { Text("Official Email") },
                 leadingIcon = { Icon(Icons.Default.Email, contentDescription = null) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
@@ -164,9 +191,9 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-                value = regOrStaffNumber,
-                onValueChange = { regOrStaffNumber = it },
-                label = { Text(if (selectedRole == "STUDENT") "Registration Number (e.g. UMMA/CS/001/2026)" else "Staff ID") },
+                value = staffId,
+                onValueChange = { staffId = it },
+                label = { Text("Admin Staff ID (e.g. ADM/002)") },
                 leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
@@ -202,11 +229,11 @@ fun RegisterScreen(
                         fullName = fullName,
                         email = email,
                         password = password,
-                        role = selectedRole,
+                        role = "ADMIN",
                         phone = phone,
-                        regOrStaffNumber = regOrStaffNumber,
+                        regOrStaffNumber = staffId,
                         department = department,
-                        programme = programme
+                        programme = "N/A"
                     )
                 },
                 modifier = Modifier
@@ -222,8 +249,14 @@ fun RegisterScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-                    Text("CREATE ACCOUNT", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text("CREATE ADMIN ACCOUNT", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                 }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            TextButton(onClick = onBackToLogin) {
+                Text("Already have an account? Sign In", fontWeight = FontWeight.Bold)
             }
         }
     }

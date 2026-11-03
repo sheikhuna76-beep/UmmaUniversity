@@ -12,8 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ummauniversity.data.entities.UserEntity
 import com.example.ummauniversity.ui.components.StudentBottomNavBar
 import com.example.ummauniversity.ui.components.UmmaTopBar
 import com.example.ummauniversity.ui.theme.UmmaGoldAccent
@@ -23,11 +25,16 @@ import com.example.ummauniversity.viewmodel.StudentViewModel
 
 @Composable
 fun TranscriptScreen(
+    currentUser: UserEntity? = null,
     studentViewModel: StudentViewModel,
     onNavigateToRoute: (String) -> Unit
 ) {
     val profile by studentViewModel.studentProfile.collectAsState()
     val results by studentViewModel.results.collectAsState()
+
+    val studentName = currentUser?.fullName ?: "Asiyah Abdullahi"
+    val regNo = profile?.regNumber ?: "UMMA/CS/001/2026"
+    val programme = profile?.programme ?: "Bachelor of Computer Science"
 
     Scaffold(
         topBar = {
@@ -61,21 +68,22 @@ fun TranscriptScreen(
                 Column(
                     modifier = Modifier
                         .padding(20.dp)
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .fillMaxWidth()
                 ) {
                     Text(
                         text = "UMMA UNIVERSITY",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.ExtraBold,
                         color = Color.White,
-                        letterSpacing = 1.sp
+                        letterSpacing = 1.sp,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
                     Text(
                         text = "OFFICIAL ACADEMIC TRANSCRIPT",
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
-                        color = UmmaGoldAccent
+                        color = UmmaGoldAccent,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -84,15 +92,28 @@ fun TranscriptScreen(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Column {
-                            Text(text = "Name: Ahmed Hassan", color = Color.White, fontSize = 12.sp)
-                            Text(text = "Reg No: ${profile?.regNumber ?: "UMMA/CS/001/2026"}", color = Color.White, fontSize = 12.sp)
-                            Text(text = "Programme: ${profile?.programme ?: "BSc. Computer Science"}", color = Color.White, fontSize = 12.sp)
+                        Column(modifier = Modifier.weight(1.3f)) {
+                            Text(text = "Name: $studentName", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(text = "Reg No: $regNo", color = Color.White, fontSize = 12.sp)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(text = "Programme: $programme", color = Color.White, fontSize = 12.sp, lineHeight = 16.sp)
                         }
-                        Column(horizontalAlignment = Alignment.End) {
-                            Text(text = "Year of Study: Year 3", color = Color.White, fontSize = 12.sp)
-                            Text(text = "CGPA: ${profile?.cgpa ?: 3.68}", color = UmmaGoldAccent, fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                            Text(text = "Status: PASS", color = Color(0xFF81C784), fontWeight = FontWeight.Bold, fontSize = 12.sp)
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Column(
+                            modifier = Modifier.weight(0.7f),
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            Text(text = "Year of Study", color = Color.White.copy(alpha = 0.8f), fontSize = 11.sp)
+                            Text(text = "Year ${profile?.yearOfStudy ?: 3}", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = "CGPA", color = Color.White.copy(alpha = 0.8f), fontSize = 11.sp)
+                            Text(text = "${String.format("%.2f", profile?.cgpa ?: 3.68)}", color = UmmaGoldAccent, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = "Status", color = Color.White.copy(alpha = 0.8f), fontSize = 11.sp)
+                            Text(text = "PASS", color = Color(0xFF81C784), fontWeight = FontWeight.Bold, fontSize = 12.sp)
                         }
                     }
                 }
@@ -102,7 +123,7 @@ fun TranscriptScreen(
 
             Text(
                 text = "ACADEMIC YEAR: 2026/2027 • SEMESTER 1",
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold,
                 color = UmmaGreenPrimary
             )
@@ -115,13 +136,13 @@ fun TranscriptScreen(
                     .fillMaxWidth()
                     .background(UmmaGreenPrimary, RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
                     .padding(horizontal = 12.dp, vertical = 10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Course", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f), fontSize = 12.sp)
-                Text(text = "Title", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(3f), fontSize = 12.sp)
-                Text(text = "Marks", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp)
-                Text(text = "Grade", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp)
-                Text(text = "GP", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp)
+                Text(text = "Course", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.8f), fontSize = 12.sp)
+                Text(text = "Title", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(3.2f), fontSize = 12.sp)
+                Text(text = "Marks", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f), fontSize = 12.sp, textAlign = TextAlign.Center)
+                Text(text = "Grade", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp, textAlign = TextAlign.Center)
+                Text(text = "GP", color = Color.White, fontWeight = FontWeight.Bold, modifier = Modifier.weight(0.8f), fontSize = 12.sp, textAlign = TextAlign.Center)
             }
 
             // Transcript Rows
@@ -129,16 +150,15 @@ fun TranscriptScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))
+                        .border(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
                         .padding(horizontal = 12.dp, vertical = 10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = res.courseCode, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f), fontSize = 12.sp)
-                    Text(text = res.courseTitle, modifier = Modifier.weight(3f), fontSize = 11.sp, maxLines = 1)
-                    Text(text = "${res.totalMarks}%", modifier = Modifier.weight(1f), fontSize = 12.sp)
-                    Text(text = res.grade, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp, color = UmmaGreenPrimary)
-                    Text(text = "${res.gradePoint}", modifier = Modifier.weight(1f), fontSize = 12.sp)
+                    Text(text = res.courseCode, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.8f), fontSize = 12.sp)
+                    Text(text = res.courseTitle, modifier = Modifier.weight(3.2f), fontSize = 11.sp, maxLines = 1)
+                    Text(text = "${res.totalMarks}%", modifier = Modifier.weight(1.2f), fontSize = 12.sp, textAlign = TextAlign.Center)
+                    Text(text = res.grade, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f), fontSize = 12.sp, color = UmmaGreenPrimary, textAlign = TextAlign.Center)
+                    Text(text = "${String.format("%.1f", res.gradePoint)}", modifier = Modifier.weight(0.8f), fontSize = 12.sp, textAlign = TextAlign.Center)
                 }
             }
 

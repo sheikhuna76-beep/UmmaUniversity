@@ -98,7 +98,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(
-                        text = currentUser?.fullName ?: "Ahmed Hassan",
+                        text = currentUser?.fullName ?: "Asiyah Abdullahi",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = Color.White

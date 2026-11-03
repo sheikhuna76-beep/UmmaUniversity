@@ -21,6 +21,7 @@ import com.example.ummauniversity.ui.components.EmptyStateView
 import com.example.ummauniversity.ui.components.UmmaTopBar
 import com.example.ummauniversity.ui.theme.UmmaGreenPrimary
 import com.example.ummauniversity.viewmodel.AdminViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun AdminManageStudentsScreen(
@@ -32,9 +33,13 @@ fun AdminManageStudentsScreen(
     var showAddDialog by remember { mutableStateOf(false) }
     var nameInput by remember { mutableStateOf("") }
     var emailInput by remember { mutableStateOf("") }
+    var passwordInput by remember { mutableStateOf("student123") }
     var regInput by remember { mutableStateOf("UMMA/CS/") }
     var deptInput by remember { mutableStateOf("Computer Science") }
     var progInput by remember { mutableStateOf("Bachelor of Computer Science") }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -44,6 +49,7 @@ fun AdminManageStudentsScreen(
                 onBackClick = onNavigateBack
             )
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { showAddDialog = true },
@@ -109,13 +115,13 @@ fun AdminManageStudentsScreen(
     if (showAddDialog) {
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
-            title = { Text("Register New Student") },
+            title = { Text("Register New Student Account") },
             text = {
                 Column {
                     OutlinedTextField(
                         value = nameInput,
                         onValueChange = { nameInput = it },
-                        label = { Text("Full Name") },
+                        label = { Text("Full Name (e.g. Asiyah Abdullahi)") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -124,6 +130,14 @@ fun AdminManageStudentsScreen(
                         value = emailInput,
                         onValueChange = { emailInput = it },
                         label = { Text("Student Email") },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = passwordInput,
+                        onValueChange = { passwordInput = it },
+                        label = { Text("Initial Password") },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -162,16 +176,22 @@ fun AdminManageStudentsScreen(
                                 email = emailInput,
                                 regNo = regInput,
                                 dept = deptInput,
-                                prog = progInput
+                                prog = progInput,
+                                password = passwordInput.ifBlank { "student123" }
                             )
+                            val addedName = nameInput
                             showAddDialog = false
                             nameInput = ""
                             emailInput = ""
+                            passwordInput = "student123"
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar("Registered student account: $addedName")
+                            }
                         }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = UmmaGreenPrimary)
                 ) {
-                    Text("ADD STUDENT")
+                    Text("REGISTER STUDENT")
                 }
             },
             dismissButton = {

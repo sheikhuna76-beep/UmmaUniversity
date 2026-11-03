@@ -48,12 +48,12 @@ class AdminViewModel(private val repository: UmmaRepository) : ViewModel() {
         }
     }
 
-    fun addStudent(fullName: String, email: String, regNo: String, dept: String, prog: String) {
+    fun addStudent(fullName: String, email: String, regNo: String, dept: String, prog: String, password: String = "student123") {
         viewModelScope.launch {
             val user = UserEntity(
                 fullName = fullName,
                 email = email,
-                passwordHash = "student123",
+                passwordHash = password,
                 role = "STUDENT",
                 regOrStaffNumber = regNo,
                 department = dept,
@@ -71,12 +71,12 @@ class AdminViewModel(private val repository: UmmaRepository) : ViewModel() {
         }
     }
 
-    fun addLecturer(fullName: String, email: String, staffId: String, dept: String) {
+    fun addLecturer(fullName: String, email: String, staffId: String, dept: String, password: String = "lecturer123") {
         viewModelScope.launch {
             val user = UserEntity(
                 fullName = fullName,
                 email = email,
-                passwordHash = "lecturer123",
+                passwordHash = password,
                 role = "LECTURER",
                 regOrStaffNumber = staffId,
                 department = dept

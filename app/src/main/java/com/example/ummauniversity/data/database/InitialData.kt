@@ -102,11 +102,11 @@ object InitialData {
     )
 
     val sampleAttendance = listOf(
-        AttendanceRecordEntity(1, 1, "COMP 311", "Mobile Application Development", 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-01", "PRESENT", 15, 14),
-        AttendanceRecordEntity(2, 2, "COMP 312", "Database Management Systems", 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-02", "PRESENT", 15, 15),
-        AttendanceRecordEntity(3, 3, "COMP 313", "Software Engineering", 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-03", "PRESENT", 14, 13),
-        AttendanceRecordEntity(4, 4, "COMP 314", "Web Technologies", 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-04", "PRESENT", 15, 14),
-        AttendanceRecordEntity(5, 5, "COMP 315", "Computer Networks", 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-05", "PRESENT", 15, 15)
+        AttendanceRecordEntity(1, 1, "COMP 311", "Mobile Application Development", 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-01", "PRESENT", 15, 14),
+        AttendanceRecordEntity(2, 2, "COMP 312", "Database Management Systems", 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-02", "PRESENT", 15, 15),
+        AttendanceRecordEntity(3, 3, "COMP 313", "Software Engineering", 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-03", "PRESENT", 14, 13),
+        AttendanceRecordEntity(4, 4, "COMP 314", "Web Technologies", 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-04", "PRESENT", 15, 14),
+        AttendanceRecordEntity(5, 5, "COMP 315", "Computer Networks", 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-05", "PRESENT", 15, 15)
     )
 
     val sampleTimetable = listOf(
@@ -134,8 +134,8 @@ object InitialData {
     )
 
     val sampleSubmissions = listOf(
-        AssignmentSubmissionEntity(1, 1, 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-24", "Submitted Compose UI zip file with complete screens.", "Graded", 92, "Excellent UI design and clean state handling!"),
-        AssignmentSubmissionEntity(2, 2, 1, "Ahmed Hassan", "UMMA/CS/001/2026", "2026-03-27", "Database schema PDF and sample SQL queries.", "Graded", 88, "Good normalization and Room entity definitions.")
+        AssignmentSubmissionEntity(1, 1, 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-24", "Submitted Compose UI zip file with complete screens.", "Graded", 92, "Excellent UI design and clean state handling!"),
+        AssignmentSubmissionEntity(2, 2, 1, "Asiyah Abdullahi", "UMMA/CS/001/2026", "2026-03-27", "Database schema PDF and sample SQL queries.", "Graded", 88, "Good normalization and Room entity definitions.")
     )
 
     val sampleMaterials = listOf(
